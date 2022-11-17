@@ -1,0 +1,11 @@
+const String tokenSession = 'token';
+const String userIdSession = 'userid';
+const String profileImageSession = 'profile image';
+const String userNameSession = 'userName';
+const String emailSession = 'email';
+const String numberSession = 'number';
+const String isLoginSession = 'isLogin';
+const String isNumberAddSession  = 'isNumberAdd';
+const String isRegisterSession  = 'isRegister';
+const String onBoarding = 'isOnBoarding';
+const String inviteID = 'inviteID';
