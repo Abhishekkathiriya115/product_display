@@ -13,9 +13,9 @@ class DetailController extends GetxController {
 
   List image = [
     Get.arguments,
-    'assets/EXTERIOR/EXTERIOR_page-0002.jpg',
-    'assets/EXTERIOR/EXTERIOR_page-0003.jpg',
-    'assets/EXTERIOR/EXTERIOR_page-0004.jpg',
-    'assets/EXTERIOR/EXTERIOR_page-0005.jpg',
+    // 'assets/Moncase/iPhone 13 Pro-2.png',
+    'assets/Moncase/Picsart_22-06-06_19-39-55-249.png',
+    'assets/Moncase/Picsart_22-06-06_20-04-41-021.png',
+    'assets/Moncase/Picsart_22-06-06_20-15-09-606.png',
   ];
  }

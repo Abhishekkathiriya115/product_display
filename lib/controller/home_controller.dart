@@ -13,24 +13,38 @@ class HomeController extends GetxController {
     }
   }
 
- List image = [
-    'assets/EXTERIOR/EXTERIOR_page-0001.jpg',
-   'assets/EXTERIOR/EXTERIOR_page-0002.jpg',
-   'assets/EXTERIOR/EXTERIOR_page-0003.jpg',
-   'assets/EXTERIOR/EXTERIOR_page-0004.jpg',
-   'assets/EXTERIOR/EXTERIOR_page-0005.jpg',
+  List categoryImage = [
+    'assets/category/mooncase.jpg',
+    'assets/category/badminton.jpg',
+    'assets/category/event.jpg',
+    'assets/category/suri1.jpg',
+    'assets/category/BriflyD.jpg',
+    // 'assets/category/carUser.jpg',
+    // 'assets/category/lu.jpg',
+    // 'assets/category/re.jpg',
+    // 'assets/category/scarD.jpg',
+    // 'assets/category/shop.jpg',
+    // 'assets/category/teleD.jpg',
+    // 'assets/category/teleP.jpg',
+    // 'assets/category/wstatus.jpg',
   ];
 
-  List InteriorImage = [
-    'assets/INTERIOR/INTERIOR_page-0001.jpg',
-    'assets/INTERIOR/INTERIOR_page-0002.jpg',
-    'assets/INTERIOR/INTERIOR_page-0003.jpg',
-    'assets/INTERIOR/INTERIOR_page-0004.jpg',
-    'assets/INTERIOR/INTERIOR_page-0005.jpg',
-    'assets/INTERIOR/INTERIOR_page-0006.jpg',
-    'assets/INTERIOR/INTERIOR_page-0007.jpg',
-    'assets/INTERIOR/INTERIOR_page-0008.jpg',
-    'assets/INTERIOR/INTERIOR_page-0009.jpg',
-    'assets/INTERIOR/INTERIOR_page-00010.jpg',
+  List categoryName = [
+    'Mooncase',
+    'Badminton',
+    'Event Management',
+    'suriwallet',
+    'Brifly News',
+    // 'Taxi Booking User',
+    // 'Lambula',
+    // 'Restirant',
+    // ''
+  ];
+  List moncaseApp = [
+    // 'assets/Moncase/iPhone 13 Pro.png',
+    // 'assets/Moncase/iPhone 13 Pro-2.png',
+    'assets/Moncase/Picsart_22-06-06_19-39-55-249.png',
+    'assets/Moncase/Picsart_22-06-06_20-04-41-021.png',
+    'assets/Moncase/Picsart_22-06-06_20-15-09-606.png',
   ];
 }

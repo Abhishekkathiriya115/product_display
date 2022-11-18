@@ -17,7 +17,6 @@ class DetailPage extends GetView<DetailController> {
           Navigator.pop(context);
         },
         child: Column(
-
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -29,7 +28,7 @@ class DetailPage extends GetView<DetailController> {
                  children: [
                    SizedBox(width: Get.width/3.5),
                    boldTextWidget('Name : ', 18, mainColor),
-                   normalTextWidget('Building ', 18, Colors.black),
+                   normalTextWidget('Mooncase App ', 18, Colors.black),
                  ],
                ),
                const SizedBox(height: 10),
@@ -38,7 +37,7 @@ class DetailPage extends GetView<DetailController> {
                  children: [
                    SizedBox(width: Get.width/3.5),
                    boldTextWidget('Category : ', 18, mainColor),
-                   normalTextWidget('Building ', 18, Colors.black),
+                   normalTextWidget('App  ', 18, Colors.black),
                  ],
                ),
                const SizedBox(height: 10),

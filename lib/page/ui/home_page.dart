@@ -73,9 +73,9 @@ class HomePage extends GetView<HomeController> {
                     ),
                   ),
                   SizedBox(height: Get.width/5),
-                  categoryByProduct('Flutter'),
-                  categoryByProduct('Web'),
-                  // categoryByProduct('Android'),
+                  categoryByProduct('Mooncase',controller.moncaseApp),
+                  categoryByProduct('Badminton',controller.moncaseApp),
+                  categoryByProduct('Event Management',controller.moncaseApp),
                   const SizedBox(height: 60),
                 ],
               ),
@@ -114,7 +114,7 @@ class HomePage extends GetView<HomeController> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              ...List.generate(controller.image.length,
+                              ...List.generate(5,
                                       (index) =>InkWell(
                                         onTap: (){
                                           Get.toNamed(AppRoute.allProduct);
@@ -124,7 +124,7 @@ class HomePage extends GetView<HomeController> {
                                           child:  Container(
                                             height: Get.width/2.4,
                                             decoration:  BoxDecoration(
-                                              image:  DecorationImage(image: AssetImage(controller.image[index]),
+                                              image:  DecorationImage(image: AssetImage(controller.categoryImage[index]),
                                                   fit: BoxFit.fill,
                                                   opacity: 0.9
                                               ),
@@ -153,7 +153,7 @@ class HomePage extends GetView<HomeController> {
                                                   ),
                                                   child:Center(
                                                     child: boldTextWidget(
-                                                        'Asquare',25,Colors.white),
+                                                        controller.categoryName[index],25,Colors.white),
                                                   ),
                                                 ),
                                               ],
@@ -173,7 +173,7 @@ class HomePage extends GetView<HomeController> {
     );
   }
 
-   categoryByProduct(title) {
+   categoryByProduct(title,List image) {
     return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -202,10 +202,10 @@ class HomePage extends GetView<HomeController> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          ...List.generate(controller.image.length,
+                          ...List.generate(image.length,
                                   (index) => InkWell(
                                     onTap: (){
-                                      Get.toNamed(AppRoute.detailPage,arguments:controller.image[index] );
+                                      Get.toNamed(AppRoute.detailPage,arguments:image[index] );
                                     },
                                     child: Padding(
                                       padding: const EdgeInsets.only(left: 15.0,right: 15),
@@ -218,13 +218,13 @@ class HomePage extends GetView<HomeController> {
                                               borderRadius: BorderRadius.circular(25.0),
                                             ),
                                             child: Hero(
-                                              tag: controller.image[index],
+                                              tag: image[index],
                                               child: Container(
                                                   height: Get.width/2,
                                                   width:Get.width/1.9,
                                                   decoration: BoxDecoration(
                                                       borderRadius: BorderRadius.circular(25),
-                                                      image:  DecorationImage(image: AssetImage(controller.image[index]),
+                                                      image:  DecorationImage(image: AssetImage(image[index]),
                                                         fit: BoxFit.fill,
                                                       ))),
                                             ),

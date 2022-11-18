@@ -30,19 +30,19 @@ class AllProductPage extends GetView<HomeController> {
             children: [
               Expanded(
                 child: GridView.builder(
-                  itemCount: controller.image.length,
+                  itemCount: controller.moncaseApp.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     childAspectRatio: 3/3.4,
                       crossAxisCount:  2),
                   itemBuilder: (BuildContext context, int index) {
                     return InkWell(
                       onTap: (){
-                        Get.toNamed(AppRoute.detailPage,arguments:controller.image[index] );
+                        Get.toNamed(AppRoute.detailPage,arguments:controller.moncaseApp[index] );
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8,right: 8),
                         child: Hero(
-                          tag: controller.image[index],
+                          tag: controller.moncaseApp[index],
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
@@ -56,7 +56,7 @@ class AllProductPage extends GetView<HomeController> {
                                     width:Get.width/1.9,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(25),
-                                        image:  DecorationImage(image: AssetImage(controller.image[index]),
+                                        image:  DecorationImage(image: AssetImage(controller.moncaseApp[index]),
                                           fit: BoxFit.fill,
                                         ))),
                               ),
@@ -119,7 +119,7 @@ class AllProductPage extends GetView<HomeController> {
                     SizedBox(
                       height: Get.width/1.5,
                       child: ListView.builder(
-                          itemCount: controller.image.length,
+                          itemCount: controller.moncaseApp.length,
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (BuildContext context, int index) {
                             return Padding(
@@ -137,7 +137,7 @@ class AllProductPage extends GetView<HomeController> {
                                         width:Get.width/1.9,
                                         decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(25),
-                                            image:  DecorationImage(image: AssetImage(controller.image[index]),
+                                            image:  DecorationImage(image: AssetImage(controller.moncaseApp[index]),
                                               fit: BoxFit.fill,
                                             ))),
                                   ),

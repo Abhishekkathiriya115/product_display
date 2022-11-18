@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../page/ui/favorite_page.dart';
+import '../page/ui/category_page.dart';
 import '../page/ui/home_page.dart';
 import '../page/ui/profile_page.dart';
 
@@ -21,7 +21,7 @@ class BottomNavigationController extends GetxController {
       case 0:
         return const HomePage();
       case 1:
-        return const FavoritePage();
+        return const CategoryPage();
       case 2:
         return const ProfilePage();
     }
