@@ -1,14 +1,12 @@
 import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
 
-class HomeController extends GetxController with GetSingleTickerProviderStateMixin{
+class HomeController extends GetxController{
   AnimationController? animationController;
 
 @override
   onInit(){
   super.onInit();
-  animationController = AnimationController(
-      duration: const Duration(milliseconds: 2000), vsync: this);
 }
 
   List categoryImage = [
