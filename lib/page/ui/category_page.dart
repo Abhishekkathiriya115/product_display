@@ -1,13 +1,13 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:product_display/controller/home_controller.dart';
 import 'package:product_display/page/widget/all_widget.dart';
 import 'package:transformable_list_view/transformable_list_view.dart';
+import '../../controller/category_controller.dart';
 import '../../resource/color.dart';
 import '../../resource/hex_colors.dart';
 import '../../route/route.dart';
 
-class CategoryPage extends GetView<HomeController> {
+class CategoryPage extends GetView<CategoryController> {
   const CategoryPage({Key? key}) : super(key: key);
 
   @override
@@ -21,51 +21,77 @@ class CategoryPage extends GetView<HomeController> {
             child: TransformableListView.builder(
               getTransformMatrix: getScaleDownMatrix,
               itemBuilder: (context, index) {
-                return  InkWell(
-                  onTap: (){
-                    Get.toNamed(AppRoute.allProduct);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: Get.width/2,
-                      decoration: BoxDecoration(
-                        image:  DecorationImage(image: AssetImage(controller.categoryImage[index]),
-                          fit: BoxFit.fill,
-                          // opacity: 0.8
-                        ),
-                        borderRadius: BorderRadius.circular(30),
-                        // color: mainColor,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Container(
-                            width:Get.width,
-                            decoration:  BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.bottomRight,
-                                  end: Alignment.topLeft,
-                                  colors: [
-                                    HexColor('9999'),
-                                    mainColor,
-                                    HexColor('9999'),
-                                  ],
+                return  AnimatedBuilder(
+                  animation: controller.animationController!,
+                  builder: (BuildContext context, Widget? child) {
+                    final int count =
+                    controller.categoryImage.length > 10 ? 10 :  controller.categoryImage.length;
+                    final Animation<double> animation =
+                    Tween<double>(begin: 0.0, end: 1.0).animate(
+                        CurvedAnimation(
+                            parent:  controller.animationController!,
+                            curve: Interval((1 / count) * index, 1.0,
+                                curve: Curves.fastOutSlowIn)));
+                    controller.animationController?.forward();
+                    return FadeTransition(
+                      opacity: animation,
+                      child: Transform(
+                        transform: Matrix4.translationValues(
+                            0.0, 50 * (1.0 - animation.value), 0.0),
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 24, right: 24, bottom: 16),
+                          child: InkWell(
+                              splashColor: Colors.transparent,
+                              onTap: (){
+                                Get.toNamed(AppRoute.allProduct);
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  height: Get.width/2,
+                                  decoration: BoxDecoration(
+                                    image:  DecorationImage(image: AssetImage(controller.categoryImage[index]),
+                                      fit: BoxFit.fill,
+                                      // opacity: 0.8
+                                    ),
+                                    borderRadius: BorderRadius.circular(30),
+                                    // color: mainColor,
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Container(
+                                        width:Get.width,
+                                        decoration:  BoxDecoration(
+                                            gradient: LinearGradient(
+                                              begin: Alignment.bottomRight,
+                                              end: Alignment.topLeft,
+                                              colors: [
+                                                HexColor('9999'),
+                                                mainColor,
+                                                HexColor('9999'),
+                                              ],
+                                            ),
+                                            borderRadius: const BorderRadius.only(
+                                              bottomLeft: Radius.circular(30),
+                                              bottomRight: Radius.circular(30),
+                                            )                            // color: mainColor,
+                                        ),
+                                        child:  Center(
+                                          child: boldTextWidget(
+                                              controller.categoryName[index],25,Colors.white),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                borderRadius: const BorderRadius.only(
-                                  bottomLeft: Radius.circular(30),
-                                  bottomRight: Radius.circular(30),
-                                )                            // color: mainColor,
-                            ),
-                            child:  Center(
-                              child: boldTextWidget(
-                                controller.categoryName[index],25,Colors.white),
                               ),
-                            ),
-                        ],
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 );
               },
               itemCount: controller.categoryImage.length,

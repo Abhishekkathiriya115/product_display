@@ -1,7 +1,7 @@
 import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
 
-class HomeController extends GetxController with GetSingleTickerProviderStateMixin{
+class CategoryController extends GetxController with GetSingleTickerProviderStateMixin{
   AnimationController? animationController;
 
 @override
@@ -37,12 +37,5 @@ class HomeController extends GetxController with GetSingleTickerProviderStateMix
     // 'Lambula',
     // 'Restirant',
     // ''
-  ];
-  List moncaseApp = [
-    // 'assets/Moncase/iPhone 13 Pro.png',
-    // 'assets/Moncase/iPhone 13 Pro-2.png',
-    'assets/Moncase/Picsart_22-06-06_19-39-55-249.png',
-    'assets/Moncase/Picsart_22-06-06_20-04-41-021.png',
-    'assets/Moncase/Picsart_22-06-06_20-15-09-606.png',
   ];
 }

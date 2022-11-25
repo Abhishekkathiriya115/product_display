@@ -73,9 +73,9 @@ class HomePage extends GetView<HomeController> {
                     ),
                   ),
                   SizedBox(height: Get.width/5),
-                  categoryByProduct('Mooncase',controller.moncaseApp),
-                  categoryByProduct('Badminton',controller.moncaseApp),
-                  categoryByProduct('Event Management',controller.moncaseApp),
+                  CategoryProduct(controller: controller,title: 'Mooncase'),
+                  CategoryProduct(controller: controller,title: 'Event Management'),
+                  CategoryProduct(controller: controller,title: 'Badminton'),
                   const SizedBox(height: 60),
                 ],
               ),
@@ -172,91 +172,124 @@ class HomePage extends GetView<HomeController> {
       ),
     );
   }
+}
 
-   categoryByProduct(title,List image) {
-    return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0,right: 20,bottom: 20),
-                      child: Row(
-                        children: [
-                          boldTextWidget(title,23,mainColor),
-                          const Spacer(),
-                          InkWell(
-                            onTap: (){
-                              Get.toNamed(AppRoute.allProduct);
-                            },
-                            child: Row(
-                              children: [
-                                normalTextWidget('view all ',18,pinkColor),
-                                Icon(Icons.arrow_forward_ios_rounded,size: 16,color: pinkColor)
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ...List.generate(image.length,
-                                  (index) => InkWell(
-                                    onTap: (){
-                                      Get.toNamed(AppRoute.detailPage,arguments:image[index] );
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 15.0,right: 15),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          Card(
-                                            elevation: 10,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(25.0),
-                                            ),
-                                            child: Hero(
-                                              tag: image[index],
-                                              child: Container(
-                                                  height: Get.width/2,
-                                                  width:Get.width/1.9,
-                                                  decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(25),
-                                                      image:  DecorationImage(image: AssetImage(image[index]),
-                                                        fit: BoxFit.fill,
-                                                      ))),
-                                            ),
-                                          ),
-                                          FractionalTranslation(
-                                            translation: const Offset(0, -0.5),
-                                            child: Card(
-                                              elevation: 10,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(50.0),
-                                              ),
-                                              child: Container(
-                                                width: Get.width/3,
-                                                height:  Get.width/9,
-                                                decoration: BoxDecoration(
-                                                  color: mainColor,
-                                                  borderRadius: BorderRadius.circular(50),
-                                                  // border: Border.all(width: 5, color: Colors.white)
-                                                ),
-                                                child:  Center(
-                                                    child: normalTextWidget('Flutter', 18, Colors.white)),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
+class CategoryProduct extends StatelessWidget {
+  const CategoryProduct({Key? key,required this.controller,required this.title}) : super(key: key);
+  final HomeController controller;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 16, bottom: 16),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0,right: 20,bottom: 20),
+            child: Row(
+              children: [
+                boldTextWidget(title,23,mainColor),
+                const Spacer(),
+                InkWell(
+                  onTap: (){
+                    Get.toNamed(AppRoute.allProduct);
+                  },
+                  child: Row(
+                    children: [
+                      normalTextWidget('view all ',18,pinkColor),
+                      Icon(Icons.arrow_forward_ios_rounded,size: 16,color: pinkColor)
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ...List.generate(controller.moncaseApp.length,
+                        (index) {
+                      final int count = controller.moncaseApp.length > 10
+                          ? 10
+                          : controller.moncaseApp.length;
+                      final Animation<double> animation =
+                      Tween<double>(begin: 0.0, end: 1.0).animate(
+                          CurvedAnimation(
+                              parent: controller.animationController!,
+                              curve: Interval((1 / count) * index, 1.0,
+                                  curve: Curves.fastOutSlowIn)));
+                      controller.animationController?.forward();
+                      return AnimatedBuilder(
+                        animation:  controller.animationController!,
+                        builder: (BuildContext context, Widget? child) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: Transform(
+                              transform: Matrix4.translationValues(100 * (1.0 - animation.value), 0.0, 0.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                onTap: (){
+                                  Get.toNamed(AppRoute.detailPage,arguments:controller.moncaseApp[index]);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 15.0,right: 15),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Card(
+                                        elevation: 10,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(25.0),
+                                        ),
+                                        child: Hero(
+                                          tag: controller.moncaseApp[index],
+                                          child: Container(
+                                              height: Get.width/2,
+                                              width:Get.width/1.9,
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(25),
+                                                  image:  DecorationImage(image: AssetImage(controller.moncaseApp[index]),
+                                                    fit: BoxFit.fill,
+                                                  ))),
+                                        ),
                                       ),
-                                    ),
-                                  )),
-                        ],
-                      ),
-                    )
-                  ],
-                );
+                                      FractionalTranslation(
+                                        translation: const Offset(0, -0.5),
+                                        child: Card(
+                                          elevation: 10,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(50.0),
+                                          ),
+                                          child: Container(
+                                            width: Get.width/3,
+                                            height:  Get.width/9,
+                                            decoration: BoxDecoration(
+                                              color: mainColor,
+                                              borderRadius: BorderRadius.circular(50),
+                                              // border: Border.all(width: 5, color: Colors.white)
+                                            ),
+                                            child:  Center(
+                                                child: normalTextWidget('Flutter', 18, Colors.white)),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    }),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
