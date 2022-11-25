@@ -48,21 +48,24 @@ class HomePage extends GetView<HomeController> {
                           ),
                           Row(
                             children: <Widget>[
-                              DefaultTextStyle(
-                                style: const TextStyle(
-                                  fontSize: 20.0,
-                                  fontFamily: 'Horizon',
-                                ),
-                                child: AnimatedTextKit(
-                                  pause: const Duration(microseconds: 1000),
-                                  animatedTexts: [
-                                    RotateAnimatedText('Flutter'),
-                                    RotateAnimatedText('Web'),
-                                    RotateAnimatedText('Android'),
-                                    RotateAnimatedText('IOS'),
-                                  ],
-                                  onTap: () {
-                                  },
+                              SizedBox(
+                                width:Get.width/5,
+                                child: DefaultTextStyle(
+                                  style: const TextStyle(
+                                    fontSize: 20.0,
+                                    fontFamily: 'Horizon',
+                                  ),
+                                  child: AnimatedTextKit(
+                                    pause: const Duration(microseconds: 1000),
+                                    animatedTexts: [
+                                      RotateAnimatedText('Flutter'),
+                                      RotateAnimatedText('Web'),
+                                      RotateAnimatedText('Android'),
+                                      RotateAnimatedText('IOS'),
+                                    ],
+                                    onTap: () {
+                                    },
+                                  ),
                                 ),
                               ),
                               normalTextWidget(' Development',23,Colors.white),
